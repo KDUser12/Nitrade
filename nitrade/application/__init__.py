@@ -20,8 +20,8 @@ class console:
         print(f"┏━(Welcome to Nitrade {self.json_content['version']})")
         print("┃\n┃ You are currently on a Beta version of the program")
         print("┃ if you encounter a problem open an issues on github :")
-        print("┃ >> https://github.com/KDUser12/Nitrade/issues/new")
-        print(f"┗━({test}")
+        print("┃ >> https://github.com/KDUser12/Nitrade/issues/new\n┃")
+        print(f"┗━({test})")
 
     def prompt_handle(self):
         while True:

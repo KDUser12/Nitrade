@@ -26,8 +26,9 @@ class ErrorHandling:
         message = ErrorHandling._find_element(code)
         ErrorHandling.file(code, error_message)
 
-        formatted_error = format_output.format(current_time, code, message)
-        print(formatted_error)
+        if code != "201":
+            formatted_error = format_output.format(current_time, code, message)
+            print(formatted_error)
 
     @staticmethod
     def file(code, error_message):
