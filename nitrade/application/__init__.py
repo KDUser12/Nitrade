@@ -1,28 +1,69 @@
 import json
+import sys
+from colorama import Style, Fore, init
 from application.packages.update import Update
+from application.packages.error_handling import ErrorHandling
 
-JSONFILE = "data/config.json"
-
-
-def json_file():
-    with open(JSONFILE, "r") as file:
-        content = json.load(file)
-    return content
+JSON_FILE = "data/config.json"
+UNKNOWN_COMMAND_MESSAGE = "Unknown command"
+KEYBOARD_INTERRUPT_MESSAGE = "KeyboardInterrupt"
 
 
 class console:
+    """ Class representing the console interface of the Nitrade application. """
+
     def __init__(self):
-        self.json_content = json_file()
+        init()
+
+        self.prompt = None
+        self.json_content = self.load_json_file()
+        self.update = Update.get_latest_version(self.json_content['version'])
+
         print(f'\033]2;Nitrade - {self.json_content["version"]}\007')
 
-        test = Update.get_latest_version(self.json_content['version'])
+        self.print_welcome_message()
 
-        print(f"┏━(Welcome to Nitrade {self.json_content['version']})")
+        print("[1] Local    [1] Network  [3] Config")
+        print("[4] About    [5] Exit\n")
+        self.command_input()
+
+    @staticmethod
+    def load_json_file():
+        """ Loads the contents of the JSON file. """
+        with open(JSON_FILE, "r") as file:
+            content = json.load(file)
+        return content
+
+    def print_welcome_message(self):
+        """ Displays the welcome message """
+        print("┏━(" + Fore.RED + f"Welcome to Nitrade {self.json_content['version']}" + Style.RESET_ALL + ")")
         print("┃\n┃ You are currently on a Beta version of the program")
-        print("┃ if you encounter a problem open an issues on github :")
-        print("┃ >> https://github.com/KDUser12/Nitrade/issues/new\n┃")
-        print(f"┗━({test})")
+        print(f'┃ if you encounter a problem open an issue on github :\n'
+              f'┃ >> {Fore.LIGHTBLUE_EX}https://github.com/KDUser12/Nitrade/issues/new{Style.RESET_ALL}\n┃')
+        print("┗━(" + Fore.LIGHTBLACK_EX + f"{self.update}" + Style.RESET_ALL + ")\n")
 
-    def prompt_handle(self):
-        while True:
-            self.prompt = input("[>] Choose an option: ")
+    def command_input(self):
+        try:
+            while True:
+                self.prompt = input("[>] Choose an option: ")
+                self.command_manager()
+        except KeyboardInterrupt:
+            ErrorHandling.output("101", KEYBOARD_INTERRUPT_MESSAGE)
+
+    def command_manager(self):
+        """ Manage orders entered by the user. """
+        commands = {
+            "1": None,
+            "2": None,
+            "3": None,
+            "4": None,
+            "5": sys.exit
+        }
+
+        command_function = commands.get(self.prompt, self.unknown_command)
+        command_function()
+
+    @staticmethod
+    def unknown_command():
+        """ Handles unknown commands. """
+        ErrorHandling.output("301", UNKNOWN_COMMAND_MESSAGE)
