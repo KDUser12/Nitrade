@@ -3,6 +3,7 @@ import sys
 from colorama import Style, Fore, init
 from application.packages.update import Update
 from application.packages.error_handling import ErrorHandling
+from application.modules.local import local
 
 JSON_FILE = "data/config.json"
 UNKNOWN_COMMAND_MESSAGE = "Unknown command"
@@ -53,7 +54,7 @@ class console:
     def command_manager(self):
         """ Manage orders entered by the user. """
         commands = {
-            "1": None,
+            "1": local,
             "2": None,
             "3": None,
             "4": None,
