@@ -1,18 +1,18 @@
 # Nitrade 1.0.0-BETA
-Nitrade est un programme utilitaire open-source développé en python, il est très utile pour connaitre les composants de son ordinateur ou même pour connaitre des informations sur le réseau.
+Nitrade is an open-source utility program developed in python, it is very useful to know the components of his computer or even to know information about the network.
 
 ## Documentation
-Si vous souhaitez en savoir plus sur l'utilisation de Nitrade le manuel d'utilisation est disponible sur github.
+If you want to know more about using Nitrade the user manual is available on github.
 
-La structuration du code est également disponible dans la documentation/#code-structuring.
+Code structuring is also available in the documentation/#code-structuring.
 
 ## Installation
 ### Windows
-Téléchargez le dernier programme d'installation de Nitrade. NitradeSetup.exe en 64 bits.
+Download the latest Nitrade installer. `NitradeSetup.exe` in 64 bits.
 
-Nitrade ne se met pas automatiquement à jour lorqu'une nouvelle version est disponible.
+Nitrade does not automatically update when a new version is available.
 
-Vous pouvez également télécharger nitrade-windows.zip (64 bits) à partir de la page des version.
+You can also download `nitrade-windows.zip` from the version page.
 
 ## License
-MIT License
+[MIT License](https://github.com/KDUser12/Nitrade/blob/main/LICENSE)
