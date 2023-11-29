@@ -3,8 +3,8 @@ import psutil
 import platform
 
 
-class local:
-    """ Class to retrieve local system information. """
+class Local:
+    """ Class to retrieve Local system information. """
 
     def __init__(self):
         self.os_info = os.uname() if os.name == 'posix' else platform.uname()
@@ -19,8 +19,8 @@ class local:
         print("\n[+] Computer:")
         print(f"    [-] Operating system: {self.os_info.system}")
         print(f"    [-] Name: {self.os_info.node}")
-        print(f"     [-] Release: {self.os_info.release}")
-        print(f"     [-] Version: {self.os_info.version}")
+        print(f"    [-] Release: {self.os_info.release}")
+        print(f"    [-] Version: {self.os_info.version}")
         print(f"    [-] Machine: {self.os_info.machine}")
 
     def get_memory_info(self):

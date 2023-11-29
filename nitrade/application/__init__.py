@@ -3,7 +3,8 @@ import sys
 from colorama import Style, Fore, init
 from application.packages.update import Update
 from application.packages.error_handling import ErrorHandling
-from application.modules.local import local
+from application.modules.local import Local
+from application.modules.network import Network
 
 JSON_FILE = "data/config.json"
 UNKNOWN_COMMAND_MESSAGE = "Unknown command"
@@ -24,8 +25,8 @@ class console:
 
         self.print_welcome_message()
 
-        print("[1] Local    [1] Network  [3] Config")
-        print("[4] About    [5] Exit\n")
+        print("[1] Local    [2] Network")
+        print("[3] About    [5] Exit\n")
         self.command_input()
 
     @staticmethod
@@ -54,11 +55,10 @@ class console:
     def command_manager(self):
         """ Manage orders entered by the user. """
         commands = {
-            "1": local,
-            "2": None,
+            "1": Local,
+            "2": Network,
             "3": None,
-            "4": None,
-            "5": sys.exit
+            "4": sys.exit
         }
 
         command_function = commands.get(self.prompt, self.unknown_command)
