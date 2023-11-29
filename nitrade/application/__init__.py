@@ -57,7 +57,7 @@ class console:
         commands = {
             "1": Local,
             "2": Network,
-            "3": None,
+            "3": self.about_command,
             "4": sys.exit
         }
 
@@ -68,3 +68,10 @@ class console:
     def unknown_command():
         """ Handles unknown commands. """
         ErrorHandling.output("301", UNKNOWN_COMMAND_MESSAGE)
+
+    def about_command(self):
+        print(f"\nNitrade - {self.json_content['version']}")
+        print("\nNitrade est un programme permettant de connaitre des informations sur son ordinateur de manière très avancé.")
+        print("Grâce à Nitrade vous allez pouvoir en connaitre un peu plus sur votre machine et sur votre Internet.")
+        print("Attention nous ne sommes en aucun cas responsable de l'utilisation que vous faites avec Nitrade.")
+
